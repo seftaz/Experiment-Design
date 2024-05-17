@@ -1,25 +1,29 @@
-public class PackageContext {
+class PackageContext {
     private PackageState currentState;
     private boolean delivered;
 
-    public PackageContext() {
-        this.currentState = new InTransitState(); // Default state
+    PackageContext() {
+        this.currentState = new InTransitState();
         this.delivered = false;
     }
 
-    public void setState(PackageState state) {
+    void setState(PackageState state) {
         this.currentState = state;
     }
 
-    public void applyState() {
+    PackageState getState() {
+        return this.currentState;
+    }
+
+    void applyState() {
         this.currentState.updateState(this);
     }
 
-    public boolean isDelivered() {
+    boolean isDelivered() {
         return delivered;
     }
 
-    public void setDelivered(boolean delivered) {
+    void setDelivered(boolean delivered) {
         this.delivered = delivered;
     }
 }

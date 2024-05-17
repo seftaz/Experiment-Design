@@ -1,12 +1,23 @@
 import java.util.Scanner;
 
 public class Main {
+    static ShippingStrategy shippingStrategy;
+    private Scanner scanner;
 
-    private static ShippingStrategy shippingStrategy;
-    private static final Scanner scanner = new Scanner(System.in);
+    Main(Scanner scanner) {
+        this.scanner = scanner;
+    }
 
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Main main = new Main(scanner);
+        main.run();
+        scanner.close();
+    }
+
+    private void run() {
         double weight = getPackageWeight();
+
         PackageContext packageContext = new PackageContext();
 
         while (!packageContext.isDelivered()) {
@@ -21,35 +32,34 @@ public class Main {
 
             packageContext.applyState();
         }
-
-        scanner.close();
     }
 
-    private static double getPackageWeight() {
+    static double getPackageWeight() {
         // TODO: Implement this method
         return 0;
     }
 
-    private static int getShippingMethod() {
+    static int getShippingMethod() {
         // TODO: Implement this method
         return 0;
     }
 
-    private static void setShippingStrategy(int method) {
+    static void setShippingStrategy(int method) {
         // TODO: Implement this method
     }
 
-    private static double calculateShippingCost(double weight) {
-        // TODO: Implement this method
-        return 0;
-    }
-
-    private static int getPackageState() {
+    static double calculateShippingCost(double weight) {
         // TODO: Implement this method
         return 0;
     }
 
-    private static void updatePackageState(PackageContext packageContext, int state) {
+    static int getPackageState() {
+        // TODO: Implement this method
+        return 0;
+    }
+
+    static void updatePackageState(PackageContext packageContext, int state) {
         // TODO: Implement this method
     }
 }
+
