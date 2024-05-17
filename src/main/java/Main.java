@@ -1,6 +1,8 @@
+
 import java.util.Scanner;
 
 public class Main {
+
     static ShippingStrategy shippingStrategy;
     private Scanner scanner;
 
@@ -34,32 +36,38 @@ public class Main {
         }
     }
 
-    static double getPackageWeight() {
-        // TODO: Implement this method
-        return 0;
+    double getPackageWeight() {
+        System.out.print("Enter the weight of the package: ");
+        return scanner.nextDouble();
     }
 
-    static int getShippingMethod() {
-        // TODO: Implement this method
-        return 0;
+    int getShippingMethod() {
+        System.out.println("Enter shipping method (1 for Standard, 2 for Express): ");
+        return scanner.nextInt();
     }
 
-    static void setShippingStrategy(int method) {
-        // TODO: Implement this method
+    void setShippingStrategy(int method) {
+        if (method == 1 && !(shippingStrategy instanceof StandardShipping)) {
+            shippingStrategy = new StandardShipping();
+        } else if (method == 2 && !(shippingStrategy instanceof ExpressShipping)) {
+            shippingStrategy = new ExpressShipping();
+        }
     }
 
-    static double calculateShippingCost(double weight) {
-        // TODO: Implement this method
-        return 0;
+    double calculateShippingCost(double weight) {
+        return shippingStrategy.calculateCost(weight);
     }
 
-    static int getPackageState() {
-        // TODO: Implement this method
-        return 0;
+    int getPackageState() {
+        System.out.println("Enter package state (1 for In-Transit, 2 for Delivered): ");
+        return scanner.nextInt();
     }
 
-    static void updatePackageState(PackageContext packageContext, int state) {
-        // TODO: Implement this method
+    void updatePackageState(PackageContext packageContext, int state) {
+        if (state == 1) {
+            packageContext.setState(new InTransitState());
+        } else if (state == 2) {
+            packageContext.setState(new DeliveredState());
+        }
     }
 }
-
